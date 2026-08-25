@@ -9,7 +9,8 @@ class GUI:
 	def create_window(self):
 		layout = [
      						[sg.Push(), sg.Graph(canvas_size=(512, 256), graph_bottom_left=(0,0), graph_top_right=(512, 256), key='-DISPLAY-'), sg.Push()],
-            			[sg.Text('', background_color='#222222', size=(100, 10), key='-OUTPUT-')],
+            			[sg.Multiline('', autoscroll=True, size=(108, 10), key='-OUTPUT-', background_color='#222222', text_color='#FFFFFF', disabled=True,
+                           sbar_trough_color='#222222', sbar_relief=sg.RELIEF_FLAT, sbar_arrow_color='#222222')],
                		[sg.Input(key='-IN-', size=(100, 1)), sg.Button('Submit', key='-SUBMIT-', size=(6,1))]
                  	]
 		return sg.Window('Test', layout=layout, size=(800, 480), finalize=True)

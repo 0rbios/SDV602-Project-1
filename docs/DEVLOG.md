@@ -1,3 +1,7 @@
+> Commit: Fixed text output issues
+> - The text element is now a multiline element so that it can scroll.
+> - The box was too wide which is why the word wrapping was acting up
+
 > Commit: Basic game UI layout
 > - The game now has the main interface elements
 > - This includes the user input, a submit button, the output log and the image display.

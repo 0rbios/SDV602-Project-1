@@ -1,3 +1,10 @@
+> Commit: I/O tweaks
+>
+> - Output messages are now returned up the process tree to the GUI output box
+> - Invalid commands now return a message
+> - User input is now stripped before parsing
+> - Help command now returns a list of commands and their functions
+
 > Commit: Player movement
 >
 > - Doors now take both a direction name and direction room

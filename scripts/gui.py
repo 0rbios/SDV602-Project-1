@@ -26,11 +26,10 @@ class GUI:
 			window['-DISPLAY-'].draw_image(filename='./assets/Sleeping Quarters.png', location=(0, 256))
 			window['-DISPLAY-'].draw_image(filename='./assets/Underling.png', location=(256-64, 256))	
  
-			self.log += '> ' + values['-IN-'] + '\n'
+			self.log += '> ' + parser.parse_input(values['-IN-']) + '\n'
  
 			window['-OUTPUT-'].update(self.log)
    
-			parser.parse_input(values['-IN-'])
 			window['-IN-'].update('')
    
 		window.close()

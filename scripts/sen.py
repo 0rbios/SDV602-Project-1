@@ -1,9 +1,9 @@
 from game import Game
-from gui import GUI
 from input_parser import Parser
+from gui import GUI
 
 if __name__ == '__main__':
    game = Game()
-   parser = Parser()
+   parser = Parser(game)
    gui = GUI()
    gui.run_game(parser, gui.window)

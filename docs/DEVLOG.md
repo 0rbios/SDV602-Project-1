@@ -1,3 +1,8 @@
+> Commit: User input parsing
+> - The UI now hands user input to the parser
+> - The parser splits the input by spaces and then checks the first word against a match statement
+> - The UI now clears the input when it's submitted
+
 > Commit: Fixed text output issues
 > - The text element is now a multiline element so that it can scroll.
 > - The box was too wide which is why the word wrapping was acting up

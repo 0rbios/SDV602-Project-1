@@ -1,3 +1,9 @@
+> Commit: Unlocking doors
+>
+> - Doors now store a lock state
+> - Doors have a function to unlock themselves
+> - When the input parser recieves the unlock command, it goes through each door in the room and checks if it has the given direction as an option. It then checks if the room that direction goes to is the current room to avoid any weirdness
+
 > Commit: I/O tweaks
 >
 > - Output messages are now returned up the process tree to the GUI output box

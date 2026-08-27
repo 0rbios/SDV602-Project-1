@@ -1,8 +1,20 @@
+> Commit: Door finding and fixed movement
+>
+> - Changed UI scaling again, FreeSimpleGUI seems to have issues with different screen sizes
+> - Added missing items value on inventory call in door class
+> - Added some basic inventory item adding/removing functions. Not sure if these are really super necessary since they're only one line.
+> - I have come to the conclusion that the "use", "equip" and "unlock" actions all do the same thing but require specific types of item to work. They could probably be merged into one action which works on all pickups.
+> - Made a second room to properly test movement and other functions which need two rooms
+> - You can now list the doors in a room. This iterates over all doors attached to the room and checks for the direction which isn't the current room
+> - Turns out my movement function didn't work so now it handles the output message entirely through the parser and the logic is on the room.
+> - It either returns the room object or None. The parser then figures out what to do from there and updates the current room
+
 > Commit: Unlocking doors
 >
 > - Doors now store a lock state
 > - Doors have a function to unlock themselves
 > - When the input parser recieves the unlock command, it goes through each door in the room and checks if it has the given direction as an option. It then checks if the room that direction goes to is the current room to avoid any weirdness
+> - Resized window to fit different screen
 
 > Commit: I/O tweaks
 >

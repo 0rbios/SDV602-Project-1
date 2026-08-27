@@ -9,6 +9,6 @@ class Room:
 	def move(self, location):
 		for door in self.doors:
 			if location in door.directions.keys():
-				if door.directions[location] == self: return "Cannot go that way"
-				return "Moving to " + location
-		return "Cannot go that way"
+				if door.directions[location] == self: return None
+				return door.directions[location]
+		return None

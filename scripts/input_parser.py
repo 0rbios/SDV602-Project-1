@@ -9,7 +9,11 @@ class Parser:
      
 			case 'move':
 				if len(action_array) > 1:
-					return self.game.current_room.move(action_array[1].lower())
+					attempt_move = self.game.current_room.move(action_array[1].lower())
+					if attempt_move == None: return 'Cannot go that way'
+					
+					self.game.current_room = attempt_move
+					return "Moving to " + attempt_move.name
 				else:
 					return("A door is required to move")
   
@@ -32,7 +36,15 @@ class Parser:
    
 			case 'search': pass
    
-			case 'doors': pass
+			case 'doors':
+				door_list = 'You look around for doors:'
+      
+				for door in self.game.current_room.doors:
+					for direction in door.directions.keys():
+						if door.directions[direction] != self.game.current_room:
+							door_list += '\n- There is a door to the ' + direction
+       
+				return door_list
    
 			case 'equip': pass
    

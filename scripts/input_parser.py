@@ -8,19 +8,19 @@ class Parser:
 		match action_array[0].lower():
      
 			case "move":
-				if len(action_array) > 1:
-					attempt_move = self.game.current_room.move(action_array[1].lower())
-					if attempt_move == None: return "Cannot go that way"
+				if len(action_array) <= 1: return "Move where?"
+    
+				attempt_move = self.game.current_room.move(action_array[1].lower())
+				if attempt_move == None: return "Cannot go that way"
+				
+				self.game.current_room = attempt_move
+				return "Moving to " + attempt_move.name
 					
-					self.game.current_room = attempt_move
-					return "Moving to " + attempt_move.name
-				else:
-					return("A door is required to move")
   
 			case "attack": pass
    
 			case "unlock":
-				if len(action_array) <= 1: return "A door is required to move"
+				if len(action_array) <= 1: return "Unlock which door?"
 
 				for door in self.game.current_room.doors:
 					if action_array[1].lower() in door.directions.keys() and door.directions[action_array[1].lower()] != self.game.current_room:
@@ -28,7 +28,22 @@ class Parser:
 
 				return "Not a door in this room"
 				
-			case "pickup": pass
+			case "pickup":
+				if len(action_array) <= 1: return "Pick up what item?"
+    
+				find_item = ''
+    
+				for input in range(len(action_array)):
+					if input < 1: continue
+					find_item += action_array[input] + " "
+     
+				find_item = find_item.strip()			
+    
+				for item in self.game.current_room.items:
+					if item.name.lower() == find_item.lower():
+						return "Picked up " + item.name
+
+				return "That item isn't here"
    
 			case "drop": pass
    

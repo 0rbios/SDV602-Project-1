@@ -1,3 +1,10 @@
+> Commit: Picking up items
+>
+> - GUI text input now focuses on start
+> - When the player picks up an item, the game combines any word after pickup with spaces between
+> - It then takes this and compares it to each item in the room until one matches
+> - This does mean that if the player inputs to pick up a correct item but then adds a second word, it will fail
+
 > Commit: Searching for items
 >
 > - This basically uses the same code as the door search

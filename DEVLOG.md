@@ -1,3 +1,8 @@
+> Commit: Searching for items
+>
+> - This basically uses the same code as the door search
+> - I also decided to make enter also work for GUI input
+
 > Commit: Door finding and fixed movement
 >
 > - Changed UI scaling again, FreeSimpleGUI seems to have issues with different screen sizes

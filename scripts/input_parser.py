@@ -3,23 +3,23 @@ class Parser:
 		self.game = game
    
 	def parse_input(self, input):
-		action_array = input.strip().split(' ')
+		action_array = input.strip().split(" ")
    
 		match action_array[0].lower():
      
-			case 'move':
+			case "move":
 				if len(action_array) > 1:
 					attempt_move = self.game.current_room.move(action_array[1].lower())
-					if attempt_move == None: return 'Cannot go that way'
+					if attempt_move == None: return "Cannot go that way"
 					
 					self.game.current_room = attempt_move
 					return "Moving to " + attempt_move.name
 				else:
 					return("A door is required to move")
   
-			case 'attack': pass
+			case "attack": pass
    
-			case 'unlock':
+			case "unlock":
 				if len(action_array) <= 1: return "A door is required to move"
 
 				for door in self.game.current_room.doors:
@@ -28,28 +28,37 @@ class Parser:
 
 				return "Not a door in this room"
 				
-			case 'pickup': pass
+			case "pickup": pass
    
-			case 'drop': pass
+			case "drop": pass
    
-			case 'use': pass
+			case "use": pass
    
-			case 'search': pass
+			case "search":
+				item_list = "You look around for items:"
+    
+				for item in self.game.current_room.items:
+					item_list += '\n- ' + item.name
+    
+				if item_list == "You look around for items:":
+					item_list += "\n- There are no items here"
+
+				return item_list
    
-			case 'doors':
-				door_list = 'You look around for doors:'
+			case "doors":
+				door_list = "You look around for doors:"
       
 				for door in self.game.current_room.doors:
 					for direction in door.directions.keys():
 						if door.directions[direction] != self.game.current_room:
-							door_list += '\n- There is a door to the ' + direction
+							door_list += "\n- There is a door to the " + direction
        
 				return door_list
    
-			case 'equip': pass
+			case "equip": pass
    
-			case 'help':
-				return f'\nMove – Switches to another location scene\
+			case "help":
+				return f"\nMove – Switches to another location scene\
        						\n\tArgument(s): Location e.g. “north”\
                 			\nAttack – Uses the currently equipped weapon to deal damage to an enemy\
                       	\nUnlock – Uses an available valid key to make an area enterable\
@@ -68,12 +77,12 @@ class Parser:
                         \nInventory – Displays the player’s current inventory\
                         \nStatus – Displays the player’s current status\
                         \nSen – Changes the player’s current element\
-                        \n\tArgument(s): Element e.g. “fire” or elements e.g. “fire + water”'
+                        \n\tArgument(s): Element e.g. “fire” or elements e.g. “fire + water”"
    
-			case 'inventory': pass
+			case "inventory": pass
    
-			case 'status': pass
+			case "status": pass
    
-			case 'sen': pass
+			case "sen": pass
    
-			case _: return 'Invalid Command'
+			case _: return "Invalid Command"

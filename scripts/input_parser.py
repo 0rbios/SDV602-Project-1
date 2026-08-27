@@ -41,11 +41,30 @@ class Parser:
     
 				for item in self.game.current_room.items:
 					if item.name.lower() == find_item.lower():
+						self.game.inventory.add_item(item)
+						self.game.current_room.remove_item(item)
 						return "Picked up " + item.name
 
 				return "That item isn't here"
    
-			case "drop": pass
+			case "drop":
+				if len(action_array) <= 1: return "Drop what item?"
+    
+				find_item = ''
+    
+				for input in range(len(action_array)):
+					if input < 1: continue
+					find_item += action_array[input] + " "
+     
+				find_item = find_item.strip()			
+    
+				for item in self.game.inventory.items:
+					if item.name.lower() == find_item.lower():
+						self.game.current_room.add_item(item)
+						self.game.inventory.remove_item(item)
+						return "Dropped " + item.name
+
+				return "You aren't holding that item"
    
 			case "use": pass
    
@@ -53,10 +72,10 @@ class Parser:
 				item_list = "You look around for items:"
     
 				for item in self.game.current_room.items:
-					item_list += '\n- ' + item.name
+					item_list += '\n\t- ' + item.name
     
 				if item_list == "You look around for items:":
-					item_list += "\n- There are no items here"
+					item_list += "\n\t- There are no items here"
 
 				return item_list
    
@@ -66,7 +85,7 @@ class Parser:
 				for door in self.game.current_room.doors:
 					for direction in door.directions.keys():
 						if door.directions[direction] != self.game.current_room:
-							door_list += "\n- There is a door to the " + direction
+							door_list += "\n\t- There is a door to the " + direction
        
 				return door_list
    
@@ -94,7 +113,16 @@ class Parser:
                         \nSen – Changes the player’s current element\
                         \n\tArgument(s): Element e.g. “fire” or elements e.g. “fire + water”"
    
-			case "inventory": pass
+			case "inventory":
+				item_list = "You are currently carrying these items:"
+    
+				for item in self.game.inventory.items:
+					item_list += '\n\t- ' + item.name
+    
+				if item_list == "You are currently carrying these items:":
+					item_list += "\n\t- You're not holding anything"
+
+				return item_list
    
 			case "status": pass
    

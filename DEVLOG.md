@@ -1,3 +1,11 @@
+> Commit: Inventory Management
+>
+> - The pickup command now calls the invenrory's add item function
+> - Calling the inventory command lists each item in the inventory's items, similarly to search
+> - Rooms can also add and remove items. Probably not ideal but it works.
+> - Dropping an item checks for the item the same way I have the last 5 times and then adds it to the current room and removes it from the inventory, basically the reverse of picking up
+> - I am also now indenting any list item (things starting with -)
+
 > Commit: Picking up items
 >
 > - GUI text input now focuses on start

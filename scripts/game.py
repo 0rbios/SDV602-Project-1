@@ -1,9 +1,13 @@
 from room import Room
 from door import Door
+from player import Player
 from inventory import Inventory
 from consumable import Comsumable
 
 class Game:
+	player = Player()
+	inventory = Inventory()
+   
 	test_box = Comsumable("Test Box", None)
    
 	room1 = Room('Less Padded Cell', './assets/Watchtower.png', [test_box])

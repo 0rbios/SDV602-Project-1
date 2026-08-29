@@ -125,8 +125,17 @@ class Parser:
 				return item_list
    
 			case "status":
-				return f'You check yourself:\n\tHP: {self.game.player.status.health}\n\tStrength: {self.game.player.status.strength}\n\tSen: {self.game.player.status.sen}'
+				return f"You check yourself:\n\tHP: {self.game.player.status.health}\n\tStrength: {self.game.player.status.strength}\n\tSen: {self.game.player.status.sen.name}"
    
-			case "sen": pass
+			case "sen":
+				if len(action_array) <= 1: return f"Sen elements:\n\t- Fire\n\t- Water\n\t- Earth\n\t- Air\n\t- Snow\n\t- Blood"
+
+				for element in self.game.sen_elements:
+					if element.name.lower() == action_array[1].lower():
+						self.game.player.status.sen = element
+						return "Switched Sen element to " + element.name
+
+				return f"Sen elements:\n\t- Fire\n\t- Water\n\t- Earth\n\t- Air\n\t- Snow\n\t- Blood"
+   
    
 			case _: return "Invalid Command"

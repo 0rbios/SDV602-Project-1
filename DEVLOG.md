@@ -1,3 +1,11 @@
+> Commit: Sen switching
+>
+> - The player can call the sen command with a valid element after
+> - If the player doesn't give a valid element the game will list the valid ones
+> - The game class stores a list of sen elements and then adds the advantages once all elements have been created
+> - I initially forgot to write the name of the sen element instead of just the object
+> - The player now starts with their sen set to fire
+
 > Commit: Status Viewing
 >
 > - status.py now contains a status class which tracks the player's health, current sen, and strength

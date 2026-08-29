@@ -124,7 +124,8 @@ class Parser:
 
 				return item_list
    
-			case "status": pass
+			case "status":
+				return f'You check yourself:\n\tHP: {self.game.player.status.health}\n\tStrength: {self.game.player.status.strength}\n\tSen: {self.game.player.status.sen}'
    
 			case "sen": pass
    

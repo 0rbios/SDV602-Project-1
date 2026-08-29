@@ -3,9 +3,10 @@ from door import Door
 from player import Player
 from inventory import Inventory
 from consumable import Comsumable
+from status import Status
 
 class Game:
-	player = Player()
+	player = Player(Status(10, None, 5))
 	inventory = Inventory()
    
 	test_box = Comsumable("Test Box", None)

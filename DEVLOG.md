@@ -1,3 +1,9 @@
+> Commit: Status Viewing
+>
+> - status.py now contains a status class which tracks the player's health, current sen, and strength
+> - The player class now has a status class
+> - Sending the status command will show all of the values in the player's status class
+
 > Commit: Inventory Management
 >
 > - The pickup command now calls the invenrory's add item function

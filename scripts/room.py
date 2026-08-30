@@ -6,10 +6,11 @@ class Room:
 		self.doors = doors
 		self.sprite = sprite
    
-	def move(self, location):
+	def move(self, location: str):
 		for door in self.doors:
+			print(door)
 			if location in door.directions.keys():
-				if door.directions[location] == self: return None
+				if door.directions[location] == self: continue
 				return door.directions[location]
 		return None
 

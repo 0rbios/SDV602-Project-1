@@ -1,3 +1,11 @@
+> Commit: Map layout
+>
+> - Set up basically the entire game world in game.py
+> - The rooms use a dictionary with the room name as the key, so it may be better to remove the name value from the room in future
+> - Doors are kept in a list, I could probably use this instead of putting doors in rooms, alternatively, for now I am going to make an automated process to load the doors from the two lists
+> - Initially, the doors would attach and appear correctly but the directions could not be moved in, this is the result of the user input being lowercased but the door direction being the original capitalised string. I am temporarily fixing this by capitalising the user input instead of making it lowercase
+> - I have found that ther movement code has an issue where it doesn't keep looking for doors if the first one with a matching string is pointing to the current room. I have fixed this by swapping the return statement with a continue statement
+
 > Commit: Sen switching
 >
 > - The player can call the sen command with a valid element after

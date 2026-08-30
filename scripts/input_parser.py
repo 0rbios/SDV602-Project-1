@@ -10,7 +10,7 @@ class Parser:
 			case "move":
 				if len(action_array) <= 1: return "Move where?"
     
-				attempt_move = self.game.current_room.move(action_array[1].lower())
+				attempt_move = self.game.current_room.move(action_array[1].capitalize())
 				if attempt_move == None: return "Cannot go that way"
 				
 				self.game.current_room = attempt_move

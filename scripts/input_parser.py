@@ -31,7 +31,7 @@ class Parser:
 			case "pickup":
 				if len(action_array) <= 1: return "Pick up what item?"
     
-				find_item = ''
+				find_item = ""
     
 				for input in range(len(action_array)):
 					if input < 1: continue
@@ -50,7 +50,7 @@ class Parser:
 			case "drop":
 				if len(action_array) <= 1: return "Drop what item?"
     
-				find_item = ''
+				find_item = ""
     
 				for input in range(len(action_array)):
 					if input < 1: continue
@@ -66,13 +66,28 @@ class Parser:
 
 				return "You aren't holding that item"
    
-			case "use": pass
+			case "use":
+				if len(action_array) <= 1: return "Use what item?"
+    
+				find_item = ""
+    
+				for input in range(len(action_array)):
+					if input < 1: continue
+					find_item += action_array[input] + " "
+     
+				find_item = find_item.strip()			
+    
+				for item in self.game.inventory.items:
+					if item.name.lower() == find_item.lower():
+						return item.use()
+
+				return "You aren't holding that item"
    
 			case "search":
 				item_list = "You look around for items:"
     
 				for item in self.game.current_room.items:
-					item_list += '\n\t- ' + item.name
+					item_list += "\n\t- " + item.name
     
 				if item_list == "You look around for items:":
 					item_list += "\n\t- There are no items here"
@@ -88,8 +103,6 @@ class Parser:
 							door_list += "\n\t- There is a door to the " + direction
        
 				return door_list
-   
-			case "equip": pass
    
 			case "help":
 				return f"\nMove – Switches to another location scene\
@@ -117,7 +130,7 @@ class Parser:
 				item_list = "You are currently carrying these items:"
     
 				for item in self.game.inventory.items:
-					item_list += '\n\t- ' + item.name
+					item_list += "\n\t- " + item.name
     
 				if item_list == "You are currently carrying these items:":
 					item_list += "\n\t- You're not holding anything"
@@ -125,7 +138,16 @@ class Parser:
 				return item_list
    
 			case "status":
-				return f"You check yourself:\n\tHP: {self.game.player.status.health}\n\tStrength: {self.game.player.status.strength}\n\tSen: {self.game.player.status.sen.name}"
+				weapon_string = "None"
+				shield_string = "None"
+    
+				if self.game.player.status.weapon != None:
+					weapon_string = self.game.player.status.weapon.name
+    
+				if self.game.player.status.shield != None:
+					shield_string = self.game.player.status.shield.name
+    
+				return f"You check yourself:\n\tHP: {self.game.player.status.stats["health"]}\n\tStrength: {self.game.player.status.stats["strength"]}\n\tSen: {self.game.player.status.sen.name}\n\tWeapon: {weapon_string}\n\tShield: {shield_string}"
    
 			case "sen":
 				if len(action_array) <= 1: return f"Sen elements:\n\t- Fire\n\t- Water\n\t- Earth\n\t- Air\n\t- Snow\n\t- Blood"

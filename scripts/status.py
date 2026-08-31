@@ -1,5 +1,11 @@
 class Status:
     def __init__(self, health, sen, strength):
-        self.health = health
         self.sen = sen
-        self.strength = strength
+        
+        self.stats = {
+			  "health": health,
+				"strength": strength
+		  }
+        
+        self.weapon = None
+        self.shield = None

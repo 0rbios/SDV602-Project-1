@@ -1,3 +1,18 @@
+> Commit: Item spawning and usage
+>
+> - The use command uses an adjusted version of the drop code
+> - I'm changing the use and equip commands to both just find the item in the inventory and call a use command on the item. Each item will handle its own interaction and return the relevant string to the input handler.
+> - Added in all of the items to the map. I'll add keys to doors once I get item usage working.
+> - Items use a dictionary so that they can be referenced by name.
+> - Multiple of one item can be added to the world.
+> - I have also created a list of buffs. This is only 2 items currently
+> - It might be better to remove the name value from the items and use their dictionary keys instead
+> - I have realised that it would be better to create the items directly in the room's item list rather than as seperate objects loaded in
+> - Buffs are responsible for changing status. Consumables just call theis method
+> - The status now stores stats in a dictionary for easier access by buffs
+> - Weapons and shield now take a status value when created and change the status's weapon or shield when used
+> - Weapon and shield now display in the status report, their name string has to handled before the string is printed to handle None values
+
 > Commit: Map layout
 >
 > - Set up basically the entire game world in game.py

@@ -99,8 +99,8 @@ class Parser:
     
 				for item in self.game.inventory.items:
 					if item.name.lower() == find_item.lower():
-						if self.game.combat: return item.use() + self.game.current_combat.deal_damage(self.game.current_combat.enemy, self.game.current_combat.player)
-						return item.use()
+						if self.game.combat: return item.use(self.game.inventory) + self.game.current_combat.deal_damage(self.game.current_combat.enemy, self.game.current_combat.player)
+						return item.use(self.game.inventory)
 
 				return "You aren't holding that item"
    

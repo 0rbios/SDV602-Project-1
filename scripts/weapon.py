@@ -6,6 +6,6 @@ class Weapon(Pickup):
 		self.status = status
 		self.damage = damage
 
-	def use(self) -> str:
+	def use(self, inventory) -> str:
 		self.status.weapon = self
 		return 'Equipped ' + self.name

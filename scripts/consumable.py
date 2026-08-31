@@ -5,6 +5,7 @@ class Consumable(Pickup):
 		super().__init__(name)
 		self.buff = buff
   
-	def use(self) -> str:
+	def use(self, inventory) -> str:
 		self.buff.apply()
+		inventory.remove_item(self)
 		return 'Used ' + self.name

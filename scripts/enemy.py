@@ -6,7 +6,8 @@ class Enemy:
                 		weapon,
                 		shield,
                 		element,
-							sprite
+							sprite,
+							loot = None
                		):
       self.name = name
       self.health = health
@@ -16,3 +17,4 @@ class Enemy:
       self.element = element
       self.active = True
       self.sprite = sprite
+      self.loot = loot

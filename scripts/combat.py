@@ -45,6 +45,6 @@ class Combat:
 		self.enemy.active = False
 		self.game.combat = False
   
-		self.player.status.strength = 1
+		self.player.status.stats["strength"] = 1
   
 		return "You defeated " + self.enemy.name

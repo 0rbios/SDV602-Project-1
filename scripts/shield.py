@@ -6,6 +6,6 @@ class Shield(Pickup):
 		self.status = status
 		self.defense = defense
 
-	def use(self) -> str:
+	def use(self, inventory) -> str:
 		self.status.shield = self
 		return 'Equipped ' + self.name

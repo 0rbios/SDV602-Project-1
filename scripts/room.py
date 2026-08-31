@@ -10,6 +10,7 @@ class Room:
 		for door in self.doors:
 			if location in door.directions.keys():
 				if door.directions[location] == self: continue
+				if door.locked: continue
 				return door.directions[location]
 		return None
 

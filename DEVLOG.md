@@ -1,3 +1,18 @@
+> Commit: Map completion
+>
+> - I have added in all of the enemies and attached keys to doors
+> - The game should now be in a testable state with just some missing dialogue and the search isn't quite correct
+> - The enemies have to be created seperately to their weapons and shields since the weapons and shields have to reference the enemy itself
+> - The enemies were missing a value for lootable item, meaning they couldn't have something like a key that could be picked up
+> - The keys are being stored in a list and a list comprehension is being used to assign the keys to their doors
+> - Doors weren't actually getting locked, this has been fixed by checking that before moving
+> - Consumables weren't actually being removed when they were used, the strength buff also wasn't doing anything
+> - The strength buff issue was because of capitalisation and the consumables are now removed from the inventory when they are used
+> - The strength stat isn't being reset after combat, this was due to an incorrect variable reference
+> - If I put the call to remove the item in the input parser, it works but it also removes weapons and shields when they're equipped
+> - I have resolved this by having pickups take an inventory reference when they are used so they can decide what to do with themselves
+> - Combat is probably wildly unbalanced right now but I can adjust that later when I add headless testing
+
 > Commit: GUI display
 >
 > - Changed the GUI class so that it clears and redraws the scene whenever a command is parsed

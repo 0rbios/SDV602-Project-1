@@ -33,7 +33,7 @@ class Game:
     
     # Creates a player
     
-	player = Player(Status(10, sen_elements[0], 5))
+	player = Player(Status(20, sen_elements[0], 1))
 	inventory = Inventory()
    
    # Creates the health and strength increases

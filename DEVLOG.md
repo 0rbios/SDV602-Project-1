@@ -1,3 +1,11 @@
+> Commit: Combat Tweaks
+>
+> - Resets the player's strength when enemy is defeated
+> - The player now starts with the correct stats
+> - Enemies should now be able to attack in retailation to player actions
+> - Damage calculation should be correct
+> - This code probably isn't ideal, but it works without issues and shouldn't be a problem later
+
 > Commit: Combat
 >
 > - I have made a combat class that takes a player and enemy, this currently has a function to show the current battle state and an enemy defeated function

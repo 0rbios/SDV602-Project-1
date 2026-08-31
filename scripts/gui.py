@@ -1,10 +1,12 @@
 import FreeSimpleGUI as sg
-from input_parser import Parser
-
 class GUI:
 	def __init__(self):
 		self.log = ""
 		self.window = self.create_window()
+		
+  		# Temporary sprite drawing - Currently doesn"t load until insitial input
+		self.window["-DISPLAY-"].draw_image(filename="./assets/Sleeping Quarters.png", location=(0, 256))
+		self.window["-DISPLAY-"].draw_image(filename="./assets/Underling.png", location=(256-64, 256))	
 
 	def create_window(self):
 		layout = [
@@ -21,10 +23,6 @@ class GUI:
 			event, values = window.read()
    
 			if event == sg.WIN_CLOSED: break
-
-			# Temporary sprite drawing - Currently doesn"t load until insitial input
-			window["-DISPLAY-"].draw_image(filename="./assets/Sleeping Quarters.png", location=(0, 256))
-			window["-DISPLAY-"].draw_image(filename="./assets/Underling.png", location=(256-64, 256))	
  
 			# Sends a command if either the enter key or submit button are clicked
 			if event == "-SUBMIT-":

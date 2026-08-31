@@ -10,7 +10,12 @@ class Parser:
 			case "attack":
 				if not self.game.combat: return "There's nothing to attack"
     
-				return self.game.current_combat.deal_damage(self.game.current_combat.player, self.game.current_combat.enemy)
+				attack_events = self.game.current_combat.deal_damage(self.game.current_combat.player, self.game.current_combat.enemy)
+    
+				if self.game.combat:
+					attack_events += "\n> " + self.game.current_combat.deal_damage(self.game.current_combat.enemy, self.game.current_combat.player)
+    
+				return  attack_events
 
 			case "move":
 				if self.game.combat: return "Never back down"
@@ -94,6 +99,7 @@ class Parser:
     
 				for item in self.game.inventory.items:
 					if item.name.lower() == find_item.lower():
+						if self.game.combat: return item.use() + self.game.current_combat.deal_damage(self.game.current_combat.enemy, self.game.current_combat.player)
 						return item.use()
 
 				return "You aren't holding that item"
@@ -174,9 +180,9 @@ class Parser:
 				for element in self.game.sen_elements:
 					if element.name.lower() == action_array[1].lower():
 						self.game.player.status.sen = element
+						if self.game.combat: return "Switched Sen element to " + element.name + self.game.current_combat.deal_damage(self.game.current_combat.enemy, self.game.current_combat.player)
 						return "Switched Sen element to " + element.name
 
 				return f"Sen elements:\n\t- Fire\n\t- Water\n\t- Earth\n\t- Air\n\t- Snow\n\t- Blood"
-   
    
 			case _: return "Invalid Command"

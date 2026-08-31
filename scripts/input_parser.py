@@ -7,19 +7,30 @@ class Parser:
    
 		match action_array[0].lower():
      
+			case "attack":
+				if not self.game.combat: return "There's nothing to attack"
+    
+				return self.game.current_combat.deal_damage(self.game.current_combat.player, self.game.current_combat.enemy)
+
 			case "move":
+				if self.game.combat: return "Never back down"
+      
 				if len(action_array) <= 1: return "Move where?"
     
 				attempt_move = self.game.current_room.move(action_array[1].capitalize())
 				if attempt_move == None: return "Cannot go that way"
 				
 				self.game.current_room = attempt_move
-				return "Moving to " + attempt_move.name
-					
+				self.game.combat = self.game.check_combat()
+    
+				if  self.game.combat:
+					return self.game.current_combat.show_initiation()
   
-			case "attack": pass
-   
+				return "Moving to " + attempt_move.name
+
 			case "unlock":
+				if self.game.combat: return f"{self.game.current_room.enemy} blocks your path"
+    
 				if len(action_array) <= 1: return "Unlock which door?"
 
 				for door in self.game.current_room.doors:
@@ -29,6 +40,8 @@ class Parser:
 				return "Not a door in this room"
 				
 			case "pickup":
+				if self.game.combat: return f"{self.game.current_room.enemy} blocks your path"
+    
 				if len(action_array) <= 1: return "Pick up what item?"
     
 				find_item = ""
@@ -48,6 +61,8 @@ class Parser:
 				return "That item isn't here"
    
 			case "drop":
+				if self.game.combat: return "That's a bad idea right now"
+    
 				if len(action_array) <= 1: return "Drop what item?"
     
 				find_item = ""
@@ -84,6 +99,8 @@ class Parser:
 				return "You aren't holding that item"
    
 			case "search":
+				if self.game.combat: return "Now isn't a good time for that"
+    
 				item_list = "You look around for items:"
     
 				for item in self.game.current_room.items:
@@ -95,6 +112,8 @@ class Parser:
 				return item_list
    
 			case "doors":
+				if self.game.combat: return "Now isn't a good time for that"
+    
 				door_list = "You look around for doors:"
       
 				for door in self.game.current_room.doors:

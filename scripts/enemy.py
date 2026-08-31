@@ -13,3 +13,4 @@ class Enemy:
       self.weapon = weapon
       self.shield = shield
       self.element = element
+      self.active = True

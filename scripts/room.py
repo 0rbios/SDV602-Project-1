@@ -8,7 +8,6 @@ class Room:
    
 	def move(self, location: str):
 		for door in self.doors:
-			print(door)
 			if location in door.directions.keys():
 				if door.directions[location] == self: continue
 				return door.directions[location]

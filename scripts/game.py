@@ -6,9 +6,10 @@ from consumable import Consumable
 from status import Status
 from element import Element
 from buff import Buff
-from pickup import Pickup
 from shield import Shield
 from weapon import Weapon
+from combat import Combat
+from enemy import Enemy
 
 class Game:
     
@@ -47,7 +48,7 @@ class Game:
 	rooms = {
 		"Entryway": Room("Entryway", "./assets/Entryway.png", items=[Shield(player.status, "Small Shield", 2)]),
 		"South Corridor": Room("South Corridor", "./assets/Room Left Right.png", items=[Consumable("Health Item", buffs[0])]),
-		"Armoury": Room("Armoury", "./assets/Armoury.png"),
+		"Armoury": Room("Armoury", "./assets/Armoury.png", enemy=Enemy("Gatekeeper", 10, 2, None, None, None)),
 		"Vault Entrance": Room("Vault Entrance", "./Room Left Right.png", items=[Consumable("Health Item", buffs[0])]),
 		"Vault": Room("Vault", "./assets/Vault.png", items=[Weapon(player.status, "Legend's Sword", 15)]),
 		"South-East Corridor": Room("South-East Corridor", "./assets/Room Center Right.png"),
@@ -114,3 +115,13 @@ class Game:
    
 	def __init__(self):
 		self.current_room = self.rooms["Entryway"]
+		self.current_combat = None
+		self.combat = False
+  
+	def check_combat(self):
+		if self.current_room.enemy == None: return False
+		if self.current_room.enemy.active == False: return False
+  
+		self.current_combat = Combat(self, self.player, self.current_room.enemy)
+
+		return True

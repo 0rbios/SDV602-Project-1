@@ -1,3 +1,13 @@
+> Commit: Combat
+>
+> - I have made a combat class that takes a player and enemy, this currently has a function to show the current battle state and an enemy defeated function
+> - the combat class will be created when the player enters a room with a living enemy
+> - The game class will be the ones responsible for managing the game state
+> - The game class has a function that checks if there is a valid combat scenario and makes the current game state either combat or the room depending on the result
+> - The attack command now does a dummy output
+> - Put in the first enemy of the game as a test
+> - Currently combat is one sided and doesn't handle modifiers but it works enough
+
 > Commit: Item spawning and usage
 >
 > - The use command uses an adjusted version of the drop code

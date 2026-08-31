@@ -3,7 +3,7 @@ class Status:
         self.sen = sen
         
         self.stats = {
-			  "health": health,
+				"health": health,
 				"strength": strength
 		  }
         

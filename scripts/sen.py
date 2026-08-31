@@ -5,5 +5,5 @@ from gui import GUI
 if __name__ == '__main__':
    game = Game()
    parser = Parser(game)
-   gui = GUI()
+   gui = GUI(game)
    gui.run_game(parser, gui.window)

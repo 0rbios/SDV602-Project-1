@@ -1,12 +1,14 @@
 import FreeSimpleGUI as sg
 class GUI:
-	def __init__(self):
+	def __init__(self, game):
+		self.game = game
 		self.log = ""
 		self.window = self.create_window()
-		
-  		# Temporary sprite drawing - Currently doesn"t load until insitial input
-		self.window["-DISPLAY-"].draw_image(filename="./assets/Sleeping Quarters.png", location=(0, 256))
-		self.window["-DISPLAY-"].draw_image(filename="./assets/Underling.png", location=(256-64, 256))	
+  
+		self.window["-DISPLAY-"].draw_image(filename=self.game.current_room.sprite, location=(0, 256))
+		if self.game.current_room.enemy != None:
+			if self.game.current_room.enemy.active == True:
+				self.window["-DISPLAY-"].draw_image(filename=self.game.current_room.enemy.sprite, location=(256-64, 256 / 2 + 64))	
 
 	def create_window(self):
 		layout = [
@@ -33,5 +35,11 @@ class GUI:
 				# Update the text terminal to show the new output and clear the input
 				window["-OUTPUT-"].update(self.log)
 				window["-IN-"].update("")
+    
+				window["-DISPLAY-"].erase()
+				self.window["-DISPLAY-"].draw_image(filename=self.game.current_room.sprite, location=(0, 256))
+				if self.game.current_room.enemy != None:
+					if self.game.current_room.enemy.active == True:
+						self.window["-DISPLAY-"].draw_image(filename=self.game.current_room.enemy.sprite, location=(256-64, 256 / 2 + 64))	
    
 		window.close()

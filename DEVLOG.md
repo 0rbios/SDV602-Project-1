@@ -1,3 +1,11 @@
+> Commit: GUI display
+>
+> - Changed the GUI class so that it clears and redraws the scene whenever a command is parsed
+> - The GUI class now has a reference to the game to get image paths
+> - Enemy sprites are now centered on the screen, this may not work for all of them so I may need to add a position value in the enemy class
+> - Apparently I miss-spelled most of the sprite paths
+> - I also can't tell east from west apparently
+
 > Commit: Combat Tweaks
 >
 > - Resets the player's strength when enemy is defeated

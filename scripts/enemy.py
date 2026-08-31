@@ -5,7 +5,8 @@ class Enemy:
                 		baseDMG,
                 		weapon,
                 		shield,
-                		element
+                		element,
+							sprite
                		):
       self.name = name
       self.health = health
@@ -14,3 +15,4 @@ class Enemy:
       self.shield = shield
       self.element = element
       self.active = True
+      self.sprite = sprite

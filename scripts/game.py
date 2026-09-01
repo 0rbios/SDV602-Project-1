@@ -41,7 +41,7 @@ class Game:
 		# Creates the health and strength increases
 		
 		self.buffs = [
-			Buff(self.player.status, "health", 5),
+			Buff(self.player.status, "health", 10),
 			Buff(self.player.status, "strength", 2)
 		]
 		
@@ -59,11 +59,11 @@ class Game:
 
 		self.enemies = [
 		Enemy("Gatekeeper", 20, 1, None, None, self.sen_elements[2], "./assets/Gatekeeper.png", "Gatekeeper: Noone gets past me!", "Gatekeeper: N-No... You can't get past me...", [key for key in self.keys if key.name =="Living Quarters' Key"]),
-		Enemy("Archer", 30, 2, None, None, self.sen_elements[3], "./assets/Archer.png", "Archer: I'm going to fill you with arrows!", "Archer: I guess my aim wasn't precise enough!", [key for key in self.keys if key.name =="Dining Hall Key"]),
-		Enemy("Chef", 45, 4, None, None, self.sen_elements[0], "./assets/Chef.png", "Chef: You're cooked!", "Chef: In the end, I guess it was I who was cooked!",[key for key in self.keys if key.name =="Dining Hall Exit Key"]),
-		Enemy("Initiate", 58, 7, None, None, self.sen_elements[1], "./assets/Initiate.png", "Initiate: Your traitor! I'll stop you!", "Initiate: There's a reason I'm still in training...", [key for key in self.keys if key.name =="Aviary Key"]),
-		Enemy("Underling", 73, 12, None, None, self.sen_elements[4], "./assets/Underling.png", "Mad One's Underling: The master is the king, how dare you question him!", "Mad One's Underling: S-Stay away from him!", [key for key in self.keys if key.name =="Vault Key"]),
-		Enemy("The Mad One", 80, 15, None, None, self.sen_elements[5], "./assets/Mad One.png", "The Mad One: You made it all this way, I'm impressed... But now I'll end you!", "You have defeated the Mad One, congradulations!")
+		Enemy("Archer", 21, 2, None, None, self.sen_elements[3], "./assets/Archer.png", "Archer: I'm going to fill you with arrows!", "Archer: I guess my aim wasn't precise enough!", [key for key in self.keys if key.name =="Dining Hall Key"]),
+		Enemy("Chef", 24, 4, None, None, self.sen_elements[0], "./assets/Chef.png", "Chef: You're cooked!", "Chef: In the end, I guess it was I who was cooked!",[key for key in self.keys if key.name =="Dining Hall Exit Key"]),
+		Enemy("Initiate", 28, 2, None, None, self.sen_elements[1], "./assets/Initiate.png", "Initiate: Your traitor! I'll stop you!", "Initiate: There's a reason I'm still in training...", [key for key in self.keys if key.name =="Aviary Key"]),
+		Enemy("Underling", 32, 4, None, None, self.sen_elements[4], "./assets/Underling.png", "Mad One's Underling: The master is the king, how dare you question him!", "Mad One's Underling: S-Stay away from him!", [key for key in self.keys if key.name =="Vault Key"]),
+		Enemy("The Mad One", 45, 8, None, None, self.sen_elements[5], "./assets/Mad One.png", "The Mad One: You made it all this way, I'm impressed... But now I'll end you!", "You have defeated the Mad One, congradulations!")
 		]
 		
 		# Give the enemies weapons / shields
@@ -72,8 +72,8 @@ class Game:
 		self.enemies[1].weapon = Weapon(self.enemies[1], "Bow", 3)
 		self.enemies[2].weapon = Weapon(self.enemies[2], "Knife", 5)
 		self.enemies[3].weapon = Weapon(self.enemies[3], "Wooden Sword", 3)
-		self.enemies[4].weapon = Weapon(self.enemies[4], "Chains", 10)
-		self.enemies[5].weapon = Weapon(self.enemies[5], "Mad Ones Sword", 16)
+		self.enemies[4].weapon = Weapon(self.enemies[4], "Chains", 5)
+		self.enemies[5].weapon = Weapon(self.enemies[5], "Mad Ones Sword", 10)
 		
 		# Create all of the disconnected rooms
 		
@@ -129,7 +129,7 @@ class Game:
 			Door("North", self.rooms["Training Armoury"], "South", self.rooms["North-West Corridor"]),
 			Door("North", self.rooms["North-West Corridor"], "South", self.rooms["Living Quarters"], [key for key in self.keys if key.name =="Living Quarters' Key"]),
 			Door("North", self.rooms["Living Quarters"], "South", self.rooms["East Living Corridor"]),
-			Door("West", self.rooms["Living Quarters"], "East", self.rooms["North Living Corridor"]),
+			Door("East", self.rooms["Living Quarters"], "West", self.rooms["North Living Corridor"]),
 			Door("East", self.rooms["North Living Corridor"], "West", self.rooms["Sleeping Quarters"]),
 			Door("North", self.rooms["Sleeping Quarters"], "South", self.rooms["West Living Corridor"]),
 			Door("East", self.rooms["East Living Corridor"], "West", self.rooms["Aviary"], [key for key in self.keys if key.name =="Aviary Key"]),

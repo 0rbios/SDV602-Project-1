@@ -1,3 +1,12 @@
+> Commit: Game Rebalancing
+>
+> - I have adjusted the enemy difficulty so that the headless test is able to complete the game
+> - The headless testing no longer stops when the player dies, it instead keeps running the remaining commands until it has done them all. This is happening because the headless tester can no longer see if the player health drops because the command that lowers the player's health also resets the game
+> - Door unlocking wasn't working because of capitalisation. The user input is now capitalised
+> - There was some weirdness with the list comprehension returning an array and that was breaking the key check. I fixed this by just pointing to the first index of the list if it wasn't none
+> - The player currently isn't capable of having enough health by the final battle to I am increasing the health boot from 5 to 10
+> - The game is now beatable, making it an actual game
+
 > Commit: Player death and dialogue fixes
 >
 > - The starting message doesn't apply when the game loads, I have fixed this by adding an extra update function right after the window is generated

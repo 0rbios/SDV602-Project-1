@@ -7,10 +7,6 @@ from headless import headless_path
 HEADLESS = True
 
 def action(action_index):
-	if parser.game.player.status.stats["health"] <= 0:
-		print("Player Died - Headless run completed")
-		return
-   
 	if parser.game.combat:
 		print(f"\n::attack::")
 		print(f"> {parser.parse_input("attack")}")

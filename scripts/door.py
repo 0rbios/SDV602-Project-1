@@ -1,5 +1,4 @@
 from inventory import Inventory
-from room import Room
 
 class Door:
 	def __init__(self, directionA, roomA, directionB, roomB, key = None):
@@ -8,7 +7,9 @@ class Door:
 		self.locked = (self.key != None)
 
 	def unlock(self, inventory : Inventory):
-		if self.key in inventory.items:
+		if self.key == None: return f"That door is already unlocked"
+  
+		if self.key[0] in inventory.items:
 			self.locked = False
 			return "Door unlocked"
 		else:

@@ -40,8 +40,8 @@ class Parser:
 				if len(action_array) <= 1: return "Unlock which door?"
 
 				for door in self.game.current_room.doors:
-					if action_array[1].lower() in door.directions.keys() and door.directions[action_array[1].lower()] != self.game.current_room:
-						return self.game.current_room.doors[action_array[1].lower()].unlock(self.game.player.inventory)
+					if action_array[1].capitalize() in door.directions.keys() and door.directions[action_array[1].capitalize()] != self.game.current_room:
+						return door.unlock(self.game.inventory)
 
 				return "Not a door in this room"
 				

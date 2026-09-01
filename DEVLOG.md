@@ -1,3 +1,10 @@
+> Commit: Player death and dialogue fixes
+>
+> - The starting message doesn't apply when the game loads, I have fixed this by adding an extra update function right after the window is generated
+> - When the player is defeated in combat, the game now returns a defeat message and restarts
+> - To have the game state properly re-initialise, I have to move the object creation lines into the game's init function
+> - Added a new line after the intro text to fix formatting
+
 > Commit: Dialogue
 >
 > - Enemies now have pre and post combat dialogue stored in their class

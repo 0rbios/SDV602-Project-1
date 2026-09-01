@@ -33,7 +33,11 @@ class Combat:
      
 			target.status.stats["health"] -= damage
    
-			return f"{self.enemy.name} attacked you\n" + self.show_state()
+			if target.status.stats["health"] <= 0:
+				self.game.__init__()
+				return f"{self.enemy.name} defeated you\nYou're quest ends here... You have failed."
+   
+			return f"{self.enemy.name} attacked you\n{self.show_state()}"
 
 	def show_initiation(self) -> str:
 		return f"{self.enemy.name} attacks you\n{self.enemy.pre_dialogue}\n{self.show_state()}"

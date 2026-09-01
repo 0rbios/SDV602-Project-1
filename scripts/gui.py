@@ -2,8 +2,10 @@ import FreeSimpleGUI as sg
 class GUI:
 	def __init__(self, game):
 		self.game = game
-		self.log = f"> You have just entered the former Allt temple in Polid Valley, Ghurja.\nThe Mad One has taken control and you must defeat him!"
+		self.log = f"> You have just entered the former Allt temple in Polid Valley, Ghurja.\nThe Mad One has taken control and you must defeat him!\n"
 		self.window = self.create_window()
+  
+		self.window["-OUTPUT-"].update(self.log)
   
 		self.window["-DISPLAY-"].draw_image(filename=self.game.current_room.sprite, location=(0, 256))
 		if self.game.current_room.enemy != None:

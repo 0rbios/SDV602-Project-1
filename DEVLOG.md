@@ -1,3 +1,11 @@
+> Commit: Headless Testing Mode
+>
+> - Because it would be beneficial at this point to have an automated testing mode, I added it
+> - For now it will only do a precision point run-through of the game, doing exactly what is required to complete the game
+> - For cleanliness I have the headless actions in a different file as a tuple and they are iterated over by the game runner
+> - The headless runner uses a function which takes an index, I call the function once in the game loader and then it calls itself repeatedly until the last action is reached. If the function detects that the game is in a combat state, it will attack and then rerun itself
+> - The game doesn't seem to be beatable at the moment but I'll fix that later
+
 > Commit: Expanded search/pickup system
 >
 > - Currently, the search command doesn't take any arguments and only searches the room. I need to add argument parsing to the search command and have the pickup command check both the room and the enemy

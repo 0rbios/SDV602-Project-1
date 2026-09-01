@@ -1,3 +1,12 @@
+> Commit: Expanded search/pickup system
+>
+> - Currently, the search command doesn't take any arguments and only searches the room. I need to add argument parsing to the search command and have the pickup command check both the room and the enemy
+> - Searching both the enemy and the room requires an if statement to check if a combat situation exists or not
+> - I also had to adjust the pickup on enemies to remove the item when picked up
+> - The current_combat variable doesn't reset when the scene is left, I changed that
+> - I have to search the room and enemy seperately when using the pickup command to avoid unintentional removals
+> - I have been referencing the wrong enemy, I have changed it from referencing the combat enemy to the room enemy
+
 > Commit: Map completion
 >
 > - I have added in all of the enemies and attached keys to doors

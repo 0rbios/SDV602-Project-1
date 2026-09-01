@@ -26,9 +26,10 @@ class Parser:
 				if attempt_move == None: return "Cannot go that way"
 				
 				self.game.current_room = attempt_move
+				self.game.current_combat = None
 				self.game.combat = self.game.check_combat()
     
-				if  self.game.combat:
+				if self.game.combat:
 					return self.game.current_combat.show_initiation()
   
 				return "Moving to " + attempt_move.name
@@ -57,7 +58,14 @@ class Parser:
      
 				find_item = find_item.strip()			
     
-				for item in self.game.current_room.items:
+				if self.game.current_room.enemy != None:
+					for item in self.game.current_room.enemy.loot :
+						if item.name.lower() == find_item.lower():
+							self.game.inventory.add_item(item)
+							self.game.current_room.enemy.remove_item(item)
+							return "Picked up " + item.name
+    
+				for item in self.game.current_room.items :
 					if item.name.lower() == find_item.lower():
 						self.game.inventory.add_item(item)
 						self.game.current_room.remove_item(item)
@@ -107,13 +115,25 @@ class Parser:
 			case "search":
 				if self.game.combat: return "Now isn't a good time for that"
     
-				item_list = "You look around for items:"
+				if len(action_array) <= 1: return "What do you want to search?"
     
-				for item in self.game.current_room.items:
-					item_list += "\n\t- " + item.name
+				item_list = "You search for items:"
     
-				if item_list == "You look around for items:":
-					item_list += "\n\t- There are no items here"
+				match action_array[1].lower():
+					case "room":
+						for item in self.game.current_room.items:
+							item_list += "\n\t- " + item.name
+			
+						if item_list == "You search for items:":
+							item_list += "\n\t- There are no items here"
+       
+					case "enemy":
+						if self.game.current_room.enemy == None: return "There is no enemy to search"
+						for item in self.game.current_room.enemy.loot:
+							item_list += "\n\t- " + item.name
+			
+						if item_list == "You search for items:":
+							item_list += "\n\t- There is nothing to find"
 
 				return item_list
    

@@ -1,3 +1,10 @@
+> Commit: Dialogue
+>
+> - Enemies now have pre and post combat dialogue stored in their class
+> - The combat module calls these variables when it runs its own corresponding functions
+> - The enemies currently use placeholder dialogue which I will fix later
+> - The game now opens with a brief introduction paragraph, this is written directly into the default log value
+
 > Commit: Headless Testing Mode
 >
 > - Because it would be beneficial at this point to have an automated testing mode, I added it

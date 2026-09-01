@@ -7,7 +7,9 @@ class Enemy:
                 		shield,
                 		element,
 							sprite,
-							loot : list = None
+							pre_dialogue,
+							post_dialogue,
+							loot : list = []
 							):
 		self.name = name
 		self.health = health
@@ -18,6 +20,9 @@ class Enemy:
 		self.active = True
 		self.sprite = sprite
 		self.loot = loot
+
+		self.pre_dialogue = pre_dialogue
+		self.post_dialogue = post_dialogue
       
 	def remove_item(self, item):
 		self.loot.remove(item)

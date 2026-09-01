@@ -36,7 +36,7 @@ class Combat:
 			return f"{self.enemy.name} attacked you\n" + self.show_state()
 
 	def show_initiation(self) -> str:
-		return f"{self.enemy.name} attacks you\n" + self.show_state()
+		return f"{self.enemy.name} attacks you\n{self.enemy.pre_dialogue}\n{self.show_state()}"
 
 	def show_state(self) -> str:
 		return f"Your health: {self.player.status.stats["health"]}\nEnemies health: {self.enemy.health}"
@@ -47,4 +47,4 @@ class Combat:
   
 		self.player.status.stats["strength"] = 1
   
-		return "You defeated " + self.enemy.name
+		return self.enemy.post_dialogue + "\n> You defeated " + self.enemy.name

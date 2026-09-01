@@ -1,3 +1,9 @@
+> Commit: Final Tweaks
+>
+> - Removed the player class since it does nothing and changed the name of status into player
+> - Added some extra comments
+> - Still need to fix dialogue
+
 > Commit: Game Rebalancing
 >
 > - I have adjusted the enemy difficulty so that the headless test is able to complete the game

@@ -1,16 +1,5 @@
 class Enemy:
-	def __init__(self,
-                		name,
-                		health,
-                		baseDMG,
-                		weapon,
-                		shield,
-                		element,
-							sprite,
-							pre_dialogue,
-							post_dialogue,
-							loot : list = []
-							):
+	def __init__(self, name, health, baseDMG, weapon, shield, element, sprite, pre_dialogue, post_dialogue, loot = []):
 		self.name = name
 		self.health = health
 		self.baseDMG = baseDMG

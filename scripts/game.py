@@ -3,7 +3,6 @@ from door import Door
 from player import Player
 from inventory import Inventory
 from consumable import Consumable
-from status import Status
 from element import Element
 from buff import Buff
 from shield import Shield
@@ -18,31 +17,31 @@ class Game:
 		# Loads Sen elements
 		
 		self.sen_elements = [
-			Element("Fire"),
-			Element("Water"),
-			Element("Earth"),
-			Element("Air"),
-			Element("Snow"),
-			Element("Blood")
+			Element("Fire"),		  #0
+			Element("Water"), 	#1
+			Element("Earth"), 	#2
+			Element("Air"), 		  #3
+			Element("Snow"), 	  #4
+			Element("Blood") 	  #5
 		]
 	
-		self.sen_elements[0].advantage = (self.sen_elements[5], self.sen_elements[3])
-		self.sen_elements[1].advantage = (self.sen_elements[0], self.sen_elements[5])
-		self.sen_elements[2].advantage = (self.sen_elements[0], self.sen_elements[1])
-		self.sen_elements[3].advantage = (self.sen_elements[2], self.sen_elements[4])
-		self.sen_elements[4].advantage = (self.sen_elements[2], self.sen_elements[1])
-		self.sen_elements[5].advantage = (self.sen_elements[3], self.sen_elements[4])
+		self.sen_elements[0].advantage = (self.sen_elements[5], self.sen_elements[3]) # Blood < Fire > Air
+		self.sen_elements[1].advantage = (self.sen_elements[0], self.sen_elements[5]) # Fire < Water > Blood
+		self.sen_elements[2].advantage = (self.sen_elements[0], self.sen_elements[1]) # Fire < Earth > Water
+		self.sen_elements[3].advantage = (self.sen_elements[2], self.sen_elements[4]) # Earth < Air > Snow
+		self.sen_elements[4].advantage = (self.sen_elements[2], self.sen_elements[1]) # Earth < Snow > Water
+		self.sen_elements[5].advantage = (self.sen_elements[3], self.sen_elements[4]) # Air < Blood > Snow
 		
 		# Creates a player
 		
-		self.player = Player(Status(20, self.sen_elements[0], 1))
+		self.player = Player(20, self.sen_elements[0], 1)
 		self.inventory = Inventory()
 		
 		# Creates the health and strength increases
 		
 		self.buffs = [
-			Buff(self.player.status, "health", 10),
-			Buff(self.player.status, "strength", 2)
+			Buff(self.player, "health", 10),
+			Buff(self.player, "strength", 2)
 		]
 		
 		# Make a set of keys
@@ -78,28 +77,28 @@ class Game:
 		# Create all of the disconnected rooms
 		
 		self.rooms = {
-			"Entryway": Room("Entryway", "./assets/Room Center Right.png", items=[Shield(self.player.status, "Small Shield", 2)]),
+			"Entryway": Room("Entryway", "./assets/Room Center Right.png", items=[Shield(self.player, "Small Shield", 2)]),
 			"South Corridor": Room("South Corridor", "./assets/Room Left Right.png", items=[Consumable("Health Item", self.buffs[0])]),
 			"Armoury": Room("Armoury", "./assets/Armoury.png", enemy=self.enemies[0]),
 			"Vault Entrance": Room("Vault Entrance", "./assets/Room Left Right.png", items=[Consumable("Health Item", self.buffs[0])]),
-			"Vault": Room("Vault", "./assets/Vault.png", items=[Weapon(self.player.status, "Legend's Sword", 15)]),
+			"Vault": Room("Vault", "./assets/Vault.png", items=[Weapon(self.player, "Legend's Sword", 15)]),
 			"South-East Corridor": Room("South-East Corridor", "./assets/Room Center Right.png"),
-			"Watch Tower": Room("Watch Tower", "./assets/Watchtower.png", items=[Weapon(self.player.status, "Hand Axe", 2)], enemy=self.enemies[1]),
+			"Watch Tower": Room("Watch Tower", "./assets/Watchtower.png", items=[Weapon(self.player, "Hand Axe", 2)], enemy=self.enemies[1]),
 			"East Corridor": Room("East Corridor", "./assets/Room Left Right.png", items=[Consumable("Strength Item", self.buffs[1])]),
-			"Storage Room": Room("Storage Room", "./assets/Storage.png", items=[Consumable("Health Item", self.buffs[0]), Weapon(self.player.status, "Short Sword", 4)]),
+			"Storage Room": Room("Storage Room", "./assets/Storage.png", items=[Consumable("Health Item", self.buffs[0]), Weapon(self.player, "Short Sword", 4)]),
 			"North-East Corridor": Room("North-East Corridor", "./assets/Room Left Right.png", items=[Consumable("Health Item", self.buffs[0])]),
-			"Kitchen": Room("Kitchen", "./assets/Kitchen.png", items=[Shield(self.player.status, "Shield", 5)], enemy=self.enemies[2]),
+			"Kitchen": Room("Kitchen", "./assets/Kitchen.png", items=[Shield(self.player, "Shield", 5)], enemy=self.enemies[2]),
 			"East-Central Corridor": Room("East-Central Corridor", "./assets/Room Center Right.png", items=[Consumable("Health Item", self.buffs[0])]),
-			"Dining Hall": Room("Dining Hall", "./assets/Dining Hall.png", items=[Consumable("Health Item", self.buffs[0]), Weapon(self.player.status, "Battle Axe", 7)]),
+			"Dining Hall": Room("Dining Hall", "./assets/Dining Hall.png", items=[Consumable("Health Item", self.buffs[0]), Weapon(self.player, "Battle Axe", 7)]),
 			"South-Central Corridor": Room("South-Central Corridor", "./assets/Room Left Right.png", items=[Consumable("Strength Item", self.buffs[1])]),
 			"North-Central Corridor": Room("North-Central Corridor", "./assets/Room Left Right.png", items=[Consumable("Strength Item", self.buffs[1])]),
-			"Training Room": Room("Training Room", "./assets/Training Room.png", items=[Weapon(self.player.status, "Pistol", 8)]),
+			"Training Room": Room("Training Room", "./assets/Training Room.png", items=[Weapon(self.player, "Pistol", 8)]),
 			"Training Armoury": Room("Training Armoury", "./assets/Training Armoury.png", enemy=self.enemies[3]),
 			"North-West Corridor": Room("North-West Corridor", "./assets/Room Left Right.png", items=[Consumable("Strength Item", self.buffs[1])]),
-			"Living Quarters": Room("Living Quarters", "./assets/Room All.png", items=[Weapon(self.player.status, "Saber", 7)]),
+			"Living Quarters": Room("Living Quarters", "./assets/Room All.png", items=[Weapon(self.player, "Saber", 7)]),
 			"East Living Corridor": Room("East Living Corridor", "./assets/Room Center Right.png", items=[Consumable("Health Item", self.buffs[0])]),
 			"North Living Corridor": Room("North Living Corridor", "./assets/Room Left Right.png", items=[Consumable("Health Item", self.buffs[0])]),
-			"Sleeping Quarters": Room("Sleeping Quarters", "./assets/Sleeping Quarters.png", items=[Weapon(self.player.status, "Rifle", 9)], enemy=self.enemies[4]),
+			"Sleeping Quarters": Room("Sleeping Quarters", "./assets/Sleeping Quarters.png", items=[Weapon(self.player, "Rifle", 9)], enemy=self.enemies[4]),
 			"West Living Corridor": Room("West Living Corridor", "./assets/Room Center Right.png", items=[Consumable("Health Item", self.buffs[0])]),
 			"North Corridor": Room("North Corridor", "./assets/Room Left Right.png"),
 			"Aviary": Room("Aviary", "./assets/Aviary.png", enemy=self.enemies[5])

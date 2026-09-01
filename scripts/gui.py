@@ -1,12 +1,14 @@
-import FreeSimpleGUI as sg
+from FreeSimpleGUI import Push, Graph, Multiline, Input, Button, Window, WIN_CLOSED, RELIEF_FLAT
 class GUI:
 	def __init__(self, game):
 		self.game = game
 		self.log = f"> You have just entered the former Allt temple in Polid Valley, Ghurja.\nThe Mad One has taken control and you must defeat him!\n"
 		self.window = self.create_window()
   
+		# Sets the starting output
 		self.window["-OUTPUT-"].update(self.log)
   
+		# Sets the starting display sprites
 		self.window["-DISPLAY-"].draw_image(filename=self.game.current_room.sprite, location=(0, 256))
 		if self.game.current_room.enemy != None:
 			if self.game.current_room.enemy.active == True:
@@ -14,19 +16,19 @@ class GUI:
 
 	def create_window(self):
 		layout = [
-     						[sg.Push(), sg.Graph(canvas_size=(512, 256), graph_bottom_left=(0,0), graph_top_right=(512, 256), key="-DISPLAY-"), sg.Push()],
-            			[sg.Multiline("", autoscroll=True, size=(97, 10), key="-OUTPUT-", background_color="#222222", text_color="#FFFFFF", disabled=True, \
-                           					sbar_trough_color="#222222", sbar_relief=sg.RELIEF_FLAT, sbar_arrow_color="#222222")],
-               		[sg.Input(key="-IN-", size=(90, 1), focus=True), sg.Button("Submit", key="-SUBMIT-", size=(6,1), bind_return_key=True)]
+     						[Push(), Graph(canvas_size=(512, 256), graph_bottom_left=(0,0), graph_top_right=(512, 256), key="-DISPLAY-"), Push()],
+            			[Multiline("", autoscroll=True, size=(97, 10), key="-OUTPUT-", background_color="#222222", text_color="#FFFFFF", disabled=True, \
+                           					sbar_trough_color="#222222", sbar_relief=RELIEF_FLAT, sbar_arrow_color="#222222")],
+               		[Input(key="-IN-", size=(90, 1), focus=True), Button("Submit", key="-SUBMIT-", size=(6,1), bind_return_key=True)]
                  	]
-		return sg.Window("Test", layout=layout, finalize=True)
+		return Window("Test", layout=layout, finalize=True)
 
 	# This is where the UI handles I/O
 	def run_game(self, parser, window):
 		while True:
 			event, values = window.read()
    
-			if event == sg.WIN_CLOSED: break
+			if event == WIN_CLOSED: break
  
 			# Sends a command if either the enter key or submit button are clicked
 			if event == "-SUBMIT-":
@@ -38,6 +40,7 @@ class GUI:
 				window["-OUTPUT-"].update(self.log)
 				window["-IN-"].update("")
     
+				# Refresh the sprite window after a command is parsed
 				window["-DISPLAY-"].erase()
 				self.window["-DISPLAY-"].draw_image(filename=self.game.current_room.sprite, location=(0, 256))
 				if self.game.current_room.enemy != None:

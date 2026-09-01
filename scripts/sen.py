@@ -1,11 +1,12 @@
 from game import Game
 from input_parser import Parser
 from gui import GUI
-
 from headless import headless_path
 
-HEADLESS = True
+# Tells the game wether to use the GUI or run an automated test
+HEADLESS = False
 
+# Checks the given index of the headless path array and runs the corresponding command
 def action(action_index):
 	if parser.game.combat:
 		print(f"\n::attack::")

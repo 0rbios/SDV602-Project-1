@@ -154,7 +154,7 @@ class Parser:
        						\n\tArgument(s): Location e.g. “north”\
                 			\nAttack – Uses the currently equipped weapon to deal damage to an enemy\
                       	\nUnlock – Uses an available valid key to make an area enterable\
-                        \n\tArgument(s): Door to unlock e.g. “north door”\
+                        \n\tArgument(s): Door to unlock e.g. “north”\
                         \nPickup – Picks up an item and puts it into the players inventory\
                         \n\tArgument(s): Item e.g. “bandage”\
                         \nDrop – Removes an item from the players inventory\
@@ -169,7 +169,7 @@ class Parser:
                         \nInventory – Displays the player’s current inventory\
                         \nStatus – Displays the player’s current status\
                         \nSen – Changes the player’s current element\
-                        \n\tArgument(s): Element e.g. “fire” or elements e.g. “fire + water”"
+                        \n\tArgument(s): Element e.g. “fire” (Leave blank to view advantage chart)"
    
 			case "inventory":
 				item_list = "You are currently carrying these items:"
@@ -186,23 +186,25 @@ class Parser:
 				weapon_string = "None"
 				shield_string = "None"
     
-				if self.game.player.status.weapon != None:
-					weapon_string = self.game.player.status.weapon.name
+				if self.game.player.weapon != None:
+					weapon_string = self.game.player.weapon.name
     
-				if self.game.player.status.shield != None:
-					shield_string = self.game.player.status.shield.name
+				if self.game.player.shield != None:
+					shield_string = self.game.player.shield.name
     
-				return f"You check yourself:\n\tHP: {self.game.player.status.stats["health"]}\n\tStrength: {self.game.player.status.stats["strength"]}\n\tSen: {self.game.player.status.sen.name}\n\tWeapon: {weapon_string}\n\tShield: {shield_string}"
+				return f"You check yourself:\n\tHP: {self.game.player.stats["health"]}\n\tStrength: {self.game.player.stats["strength"]}\n\tSen: {self.game.player.sen.name}\n\tWeapon: {weapon_string}\n\tShield: {shield_string}"
    
 			case "sen":
-				if len(action_array) <= 1: return f"Sen elements:\n\t- Fire\n\t- Water\n\t- Earth\n\t- Air\n\t- Snow\n\t- Blood"
+      
+				# Prints the chart of what sen elements are advantageous over each other if the player doesn't specify an element
+				if len(action_array) <= 1: return f"Sen Chart:\n\tBlood < Fire > Air\n\tFire < Water > Blood\n\tFire < Earth > Water\n\tEarth < Air > Snow\n\tEarth < Snow > Water\n\tAir < Blood > Snow"
 
 				for element in self.game.sen_elements:
 					if element.name.lower() == action_array[1].lower():
-						self.game.player.status.sen = element
+						self.game.player.sen = element
 						if self.game.combat: return "Switched Sen element to " + element.name + self.game.current_combat.deal_damage(self.game.current_combat.enemy, self.game.current_combat.player)
 						return "Switched Sen element to " + element.name
 
 				return f"Sen elements:\n\t- Fire\n\t- Water\n\t- Earth\n\t- Air\n\t- Snow\n\t- Blood"
    
-			case _: return "Invalid Command"
+			case _: return "Invalid Command 	('help' to show commands)"

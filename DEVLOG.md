@@ -1,3 +1,7 @@
+> Commit: Dialogue Fixes
+>
+> - To finish of the project, I have made the dialogue better and not placeholder
+
 > Commit: Final Tweaks
 >
 > - Removed the player class since it does nothing and changed the name of status into player

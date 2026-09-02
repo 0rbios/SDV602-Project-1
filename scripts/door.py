@@ -11,6 +11,6 @@ class Door:
   
 		if self.key[0] in inventory.items:
 			self.locked = False
-			return "Door unlocked"
+			return "Unlocked door"
 		else:
-			return "Missing key"
+			return "You don't have that key"

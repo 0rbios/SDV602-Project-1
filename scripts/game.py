@@ -120,7 +120,7 @@ class Game:
                  	self.sen_elements[5],
                   "./assets/Mad One.png",
                   "The Mad One: You made it all this way, I'm impressed... But now I'll end you!",
-                  "You have defeated the Mad One, congradulations!")
+                  "You have defeated the Mad One, congratulations!")
 		]
 		
 		# Give the enemies weapons / shields

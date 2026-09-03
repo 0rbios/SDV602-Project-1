@@ -1,3 +1,32 @@
+<hr>
+
+Throughout this development process I found that in the beginning everthing was working together really well because I has planned for them to work together in that way, however, later on in the development process I had to find workarounds for some functions, notibly showing dialogue before and after battles and also rotating turns during combat.
+
+Project / Time management throughout this process was good and tasks were being completed on or ahead of time and in a logical order which almost always followed the natural progression of the game's needs.
+
+Some of the code that I wrote throughout the devlopment process wasn't ideal as had excess lines of code or may have violated some of the Python or object-oriented philosophy. Although, this was usually fixed later on in the code once I had it working.
+
+In future, I think it would be helpful to plan out the entire project before beginning and how absolutely eveything will interact and what each thing will specifically be responsible for. Before I write any code, it would benefit me to plan out what each function will do and what it will need as well.
+
+Value Types:
+
+TUPLE - element.py - advantages value
+Tuples were used to store the other elements each element had advantage over. I did this because the advantageous elements will never change and tuples are unchangeable.
+
+LIST - game.py - line 19
+I used a list for the elements because more elements could be added later and lists are ordered and changeable making it easy to reference them with an index later.
+
+DICTIONARY - game.py - line 137
+I used a dictionary for the rooms because I needed to be able to add rooms to doors without having to worry about what index they were attached to. A dictionary allowed me to use the key, which was the name of the room, to reference a room which made it far easier to link everything.
+
+SET - game.py - line 49
+I used a set for the keys because the keys didn't need key-value pairs for easier referencing but having the names as references when looking for the value made it easier. It also means that multiple keys can belong to one door if I wanted to.
+
+COMPREHENSION - game.py - lines 59 to 193
+I used list comprehensions throughout the game formation to reference the keys for the doors and enemies since keys are unindexed.
+
+<hr>
+
 > Commit: Dialogue Fixes
 >
 > - To finish of the project, I have made the dialogue better and not placeholder

@@ -107,7 +107,8 @@ class Parser:
     
 				for item in self.game.inventory.items:
 					if item.name.lower() == find_item.lower():
-						if self.game.combat: return item.use(self.game.inventory) + self.game.current_combat.deal_damage(self.game.current_combat.enemy, self.game.current_combat.player)
+						if self.game.combat:
+							return f"{item.use(self.game.inventory)}\n{self.game.current_combat.deal_damage(self.game.current_combat.enemy, self.game.current_combat.player)}"
 						return item.use(self.game.inventory)
 
 				return "You aren't holding that item"
@@ -122,18 +123,18 @@ class Parser:
 				match action_array[1].lower():
 					case "room":
 						for item in self.game.current_room.items:
-							item_list += "\n\t- " + item.name
+							item_list += f"\n\t- {item.name}"
 			
 						if item_list == "You search for items:":
-							item_list += "\n\t- There are no items here"
+							item_list += f"\n\t- There are no items here"
        
 					case "enemy":
 						if self.game.current_room.enemy == None: return "There is no enemy to search"
 						for item in self.game.current_room.enemy.loot:
-							item_list += "\n\t- " + item.name
+							item_list += f"\n\t- {item.name}"
 			
 						if item_list == "You search for items:":
-							item_list += "\n\t- There is nothing to find"
+							item_list += f"\n\t- There is nothing to find"
 
 				return item_list
    
@@ -145,7 +146,7 @@ class Parser:
 				for door in self.game.current_room.doors:
 					for direction in door.directions.keys():
 						if door.directions[direction] != self.game.current_room:
-							door_list += "\n\t- There is a door to the " + direction
+							door_list += f"\n\t- There is a door to the {direction}"
        
 				return door_list
    
@@ -175,10 +176,10 @@ class Parser:
 				item_list = "You are currently carrying these items:"
     
 				for item in self.game.inventory.items:
-					item_list += "\n\t- " + item.name
+					item_list += f"\n\t- {item.name}"
     
 				if item_list == "You are currently carrying these items:":
-					item_list += "\n\t- You're not holding anything"
+					item_list += f"\n\t- You're not holding anything"
 
 				return item_list
    
@@ -202,7 +203,8 @@ class Parser:
 				for element in self.game.sen_elements:
 					if element.name.lower() == action_array[1].lower():
 						self.game.player.sen = element
-						if self.game.combat: return "Switched Sen element to " + element.name + self.game.current_combat.deal_damage(self.game.current_combat.enemy, self.game.current_combat.player)
+						if self.game.combat:
+							return f"Switched Sen element to {element.name}\n{self.game.current_combat.deal_damage(self.game.current_combat.enemy, self.game.current_combat.player)}"
 						return "Switched Sen element to " + element.name
 
 				return f"Sen elements:\n\t- Fire\n\t- Water\n\t- Earth\n\t- Air\n\t- Snow\n\t- Blood"
